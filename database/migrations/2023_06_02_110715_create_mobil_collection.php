@@ -14,7 +14,11 @@ class CreateMobilCollection extends Migration
     public function up()
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
+            $table->integer('mesin');
+            $table->integer('kapasitas_penumpang');
+            $table->string('tipe');
+            $table->string('kendaraan_id');
             $table->timestamps();
         });
     }
