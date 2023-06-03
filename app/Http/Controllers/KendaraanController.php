@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Kendaraan;
 use Illuminate\Support\Facades\Validator;
 
 class KendaraanController extends Controller
@@ -11,8 +12,10 @@ class KendaraanController extends Controller
     protected $data;
     protected $rules;
     protected $messages;
+    protected $kendaraanModel;
 
     public function __construct () {
+        $this->kendaraanModel = new Kendaraan();
         $this->data = [
             '1' => [
                 'tahun_keluaran' => '2000',
@@ -52,19 +55,20 @@ class KendaraanController extends Controller
         ];
 
         $this->rules = [
-            'tahun' => 'required|numeric|max:4',
-            'warna' => 'required',
-            'harga' => 'required|numeric|between:0,9999999999999.99'
+            'release_year' => 'required|numeric|gt:0|digits:4',
+            'colour' => 'required',
+            'price' => 'required|numeric|between:0,9999999999999.99'
         ];
 
         $this->messages = [
-            'tahun.required' => 'Tahun Keluaran is required.',
-            'tahun.numeric' => 'Tahun Keluaran must be numeric.',
-            'tahun.max' => 'Tahun Keluaran length cannot be more than 4 digit.',
-            'warna.required' => 'Warna is required.',
-            'harga.required' => 'Harga is required.',
-            'harga.numeric' => 'Harga must be numeric.',
-            'harga.numeric' => 'Harga must be numeric with value between 0 to 9,999,999,999,999.99',
+            'release_year.required' => 'Release Year is required.',
+            'release_year.numeric' => 'Release Year must be numeric.',
+            'release_year.gt' => 'Release Year must be greater than 0.',
+            'release_year.digits' => 'Release Year length cannot be more than 4 digit.',
+            'colour.required' => 'Colour is required.',
+            'price.required' => 'Price is required.',
+            'price.numeric' => 'Price must be numeric.',
+            'price.numeric' => 'Price must be numeric with value between 0 to 9,999,999,999,999.99',
         ];
     }
 
@@ -100,7 +104,16 @@ class KendaraanController extends Controller
                 'errors' => $validator->errors()
             ], 400);
         } else {
-            $input = true;
+            // Set input data, use iso-8601 format in UTC
+            $inputData = [
+                'tahun_keluaran' => $validator->validated()['release_year'],
+                'warna' => $validator->validated()['colour'],
+                'harga' => $validator->validated()['price'],
+                'created_at' => Carbon::now()->timezone('UTC')->toIso8601String()
+            ];
+
+            // Input to database
+            $input = $this->kendaraanModel->insertKendaraan($inputData);
             if ($input) {
                 return response()->json([
                     'success' => true,
@@ -124,11 +137,14 @@ class KendaraanController extends Controller
     public function show(String|Int $kendaraan)
     {
         if ($kendaraan) {
-            if ($this->data[$kendaraan]) {
+            // Get Data
+            $data = $this->kendaraanModel->findKendaraan($kendaraan);
+
+            if ($data) {
                 return response()->json([
                     'success' => true,
                     'message' => 'Data found.',
-                    'data' => $this->data[$kendaraan]
+                    'data' => $data
                 ], 200);
             } else {
                 return response()->json([
@@ -161,17 +177,36 @@ class KendaraanController extends Controller
                 'errors' => $validator->errors()
             ], 400);
         } else {
-            $update = true;
-            if ($update) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Data updated.'
-                ], 201);
+            // Check if data exists
+            $check = $this->kendaraanModel->checkKendaraan($kendaraan);
+
+            if ($check) {
+                // Set update data, use iso-8601 format in UTC
+                $updateData = [
+                    'tahun_keluaran' => $validator->validated()['release_year'],
+                    'warna' => $validator->validated()['colour'],
+                    'harga' => $validator->validated()['price'],
+                    'updated_at' => Carbon::now()->timezone('UTC')->toIso8601String()
+                ];
+
+                $update = $this->kendaraanModel->updateKendaraan($updateData, $kendaraan);
+
+                if ($update) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Data updated.'
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update data.'
+                    ], 500);
+                }
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Failed to update data.'
-                ], 500);
+                    'message' => 'Kendaraan with given "id" '.$kendaraan.' not found.'
+                ], 404);
             }
         }
     }
@@ -185,11 +220,22 @@ class KendaraanController extends Controller
     public function destroy(String|Int  $kendaraan)
     {
         if ($kendaraan) {
-            if ($this->data[$kendaraan]) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Data deleted.'
-                ], 200);
+            // Check if data exists
+            $check = $this->kendaraanModel->checkKendaraan($kendaraan);
+
+            $delete = $this->kendaraanModel->deleteKendaraan($kendaraan);
+            if ($check) {
+                if ($delete) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Data deleted.'
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Kendaraan with given "id" '.$kendaraan.' not found.'
+                    ], 404);
+                }
             } else {
                 return response()->json([
                     'success' => false,

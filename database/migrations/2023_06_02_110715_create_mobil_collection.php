@@ -18,6 +18,7 @@ class CreateMobilCollection extends Migration
             $table->integer('mesin');
             $table->integer('kapasitas_penumpang');
             $table->string('tipe');
+            $table->integer('stok');
             $table->string('kendaraan_id');
             $table->timestamps();
         });

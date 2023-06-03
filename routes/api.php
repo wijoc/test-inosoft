@@ -25,6 +25,7 @@ Route::group(['prefix' => 'beta'], function () {
     // Kendaraan Routes
     Route::get('/kendaraan', [KendaraanController::class, 'index']);
     Route::post('/kendaraan', [KendaraanController::class, 'store']);
+    Route::get('/kendaraan/{id}', [KendaraanController::class, 'show']);
     Route::put('/kendaraan/{id}', [KendaraanController::class, 'update']);
     Route::delete('/kendaraan/{id}', [KendaraanController::class, 'destroy']);
 

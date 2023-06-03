@@ -18,6 +18,7 @@ class CreateMotorCollection extends Migration
             $table->integer('mesin');
             $table->string('tipe_suspensi');
             $table->string('tipe_transmisi');
+            $table->integer('stok');
             $table->string('kendaraan_id');
             $table->timestamps();
         });
