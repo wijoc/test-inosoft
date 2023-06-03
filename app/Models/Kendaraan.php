@@ -17,18 +17,22 @@ class Kendaraan extends Model
     protected $fillable = ['tahun_keluaran', 'warna', 'harga', 'created_at', 'updated_at'];
 
     public function motors () {
-        return $this->embedsMany(Motor::class);
+        return $this->hasMany('App\Models\Motor', '_id', 'kendaraan_id');
     }
 
     public function mobils () {
         return $this->embedsMany(Mobils::class);
     }
 
+    public function getKendaraans () {
+        return Kendaraan::select('_id', 'tahun_keluaran', 'warna', 'harga')->get();
+    }
+
     public function insertKendaraan (Array $data, String $expect = 'bool') {
         if ($expect === 'id') {
-            return Kendaraan::insert($data);
-        } else {
             return Kendaraan::insertGetId($data);
+        } else {
+            return Kendaraan::insert($data);
         }
     }
 

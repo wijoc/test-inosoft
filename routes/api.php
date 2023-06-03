@@ -32,12 +32,14 @@ Route::group(['prefix' => 'beta'], function () {
     // Motor Routes
     Route::get('/motor', [MotorController::class, 'motorIndex']);
     Route::post('/motor', [MotorController::class, 'motorStore']);
+    Route::get('/motor/{id}', [MotorController::class, 'motorShow']);
     Route::put('/motor/{id}', [MotorController::class, 'motorUpdate']);
     Route::delete('/motor/{id}', [MotorController::class, 'motorDestroy']);
 
     // Mobil Routes
     Route::get('/mobil', [MobilController::class, 'mobilIndex']);
     Route::post('/mobil', [MobilController::class, 'mobilStore']);
+    Route::get('/mobil/{id}', [MobilController::class, 'mobilShow']);
     Route::put('/mobil/{id}', [MobilController::class, 'mobilUpdate']);
     Route::delete('/mobil/{id}', [MobilController::class, 'mobilDestroy']);
   });
