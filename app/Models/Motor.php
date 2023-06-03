@@ -52,7 +52,6 @@ class Motor extends Model
     }
 
     public function findMotor (String|Int $id, Int $withKendaraan = 0, Array $expect = ['_id', 'mesin', 'tipe_suspensi', 'tipe_transmisi', 'kendaraan_id', 'created_at', 'updated_at']) {
-        // dd('"'.implode('","', $expect).'"');
         return Motor::when($expect ?? false, function ($query) use ($expect) {
                     $query->select($expect);
                 })
