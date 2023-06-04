@@ -135,7 +135,7 @@ class KendaraanController extends Controller
     {
         if ($kendaraan) {
             // Check if data exists
-            $check = $this->kendaraanModel->checkKendaraan($kendaraan);
+            $check = $this->kendaraanModel->findKendaraan($kendaraan, ['_id']);
             if ($check) {
                 $validator = Validator::make($request->all(), $this->rules, $this->messages);
                 if ($validator->fails()) {
@@ -190,7 +190,7 @@ class KendaraanController extends Controller
     {
         if ($kendaraan) {
             // Check if data exists
-            $check = $this->kendaraanModel->checkKendaraan($kendaraan);
+            $check = $this->kendaraanModel->findKendaraan($kendaraan, ['_id']);
             if ($check) {
                 $delete = $this->kendaraanModel->deleteKendaraan($kendaraan);
                 if ($delete) {

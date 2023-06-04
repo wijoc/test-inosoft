@@ -13,12 +13,38 @@ class CreateKendaraanCollection extends Migration
      */
     public function up()
     {
-        Schema::create('kendaraan', function (Blueprint $table) {
-            // $table->id();
-            $table->integer('tahun_keluaran');
-            $table->string('warna');
-            $table->decimal('harga', $precision = 13, $scale = 2);
-            $table->timestamps();
+        Schema::connection('mongodb')->create('kendaraan', function (Blueprint $collection) {
+            // $collection->id();
+            $collection->integer('tahun_keluaran');
+            $collection->string('warna');
+            $collection->decimal('harga', $precision = 13, $scale = 2);
+            $collection->timestamps();
+            $collection->jsonSchema([
+                'bsonType' => 'object',
+                'required' => ['tahun_keluaran', 'warna', 'harga', 'created_at'],
+                'properties' => [
+                    'tahun_keluaran' => [
+                        'bsonType' => 'string',
+                        'pattern' => '^(\\d{4})$',
+                        'description' => 'tahun_keluaran field is required and value must valid year format YYYY.'
+                    ],
+                    'warna' => [
+                        'bsonType' => 'string',
+                        'description' => 'warna field is required and value must be string (alphanumeric).'
+                    ],
+                    'harga' => [
+                        'bsonType' => 'number',
+                        'minimum' => 0,
+                        'maximum' => 9999999999.99,
+                        'multipleOf' => 0.01,
+                        'description' => 'harga field must be integer with minimum value is 0, maximum value is 9999999999999.99, with 10 digit number and 2 digit decimal.'
+                    ],
+                    'created_at' => [
+                        'bsonType' => 'date',
+                        'description' => 'Field must be following ISO 8601 format.'
+                    ]
+                ],
+            ]);
         });
     }
 
