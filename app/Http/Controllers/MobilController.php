@@ -68,7 +68,7 @@ class MobilController extends KendaraanController
                 'kapasitas_penumpang' => $validator->validated()['passenger_capacity'],
                 'tipe' => $validator->validated()['type'],
                 'kendaraan_id' => $validator->validated()['id_kendaraan'],
-                'stok' => $validator->validated()['stock'] ?? 0,
+                'stok' => intval($validator->validated()['stock']) ?? 0,
                 'created_at' => Carbon::now()->timezone('UTC')->toIso8601String()
             ];
 

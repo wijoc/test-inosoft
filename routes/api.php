@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\MotorController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\SalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,8 @@ Route::group(['prefix' => 'beta'], function () {
     Route::put('/mobil/{id}', [MobilController::class, 'mobilUpdate']);
     Route::get('/mobil/{id}', [MobilController::class, 'mobilShow']);
     Route::delete('/mobil/{id}', [MobilController::class, 'mobilDestroy']);
+
+    // Sales Route
+    Route::get('/sales', [SalesController::class, 'index']);
+    Route::post('/sales', [SalesController::class, 'store']);
   });

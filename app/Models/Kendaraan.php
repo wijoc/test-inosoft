@@ -36,8 +36,8 @@ class Kendaraan extends Model
         }
     }
 
-    public function findKendaraan (String $id) {
-        return Kendaraan::find($id);
+    public function findKendaraan (String $id, Array $expect = ['_id', 'tahun_keluaran', 'warna', 'harga', 'created_at', 'updated_at']) {
+        return Kendaraan::select($expect)->find($id);
     }
 
     public function checkKendaraan (String $id) {

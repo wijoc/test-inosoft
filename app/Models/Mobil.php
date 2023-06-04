@@ -68,4 +68,14 @@ class Mobil extends Model
     public function deleteMobil (String|Int $id) {
         return Mobil::where('_id', $id)->delete();
     }
+
+    public function decreseStock (Int $multiple = 0, Array $data) {
+        if ($multiple > 0) {
+            foreach ($data as $value) {
+                Mobil::where('_id', $value['id'])->decrement('stok', $value['qty']);
+            }
+        } else {
+            Mobil::where('_id', $data['id'])->decrement('stok', $data['qty']);
+        }
+    }
 }

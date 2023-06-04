@@ -55,7 +55,7 @@ class Motor extends Model
         return Motor::when($expect ?? false, function ($query) use ($expect) {
                     $query->select($expect);
                 })
-                ->when($withKendaraan ?? false, function ($query) {
+                ->when($withKendaraan > 0 ?? false, function ($query) {
                     $query->with(['kendaraan' => function ($query) {
                         $query->select('_id', 'tahun_keluaran', 'warna', 'harga');
                     }]);
@@ -69,5 +69,15 @@ class Motor extends Model
 
     public function deleteMotor (String|Int $id) {
         return Motor::where('_id', $id)->delete();
+    }
+
+    public function decreseStock (Int $multiple = 0, Array $data) {
+        if ($multiple > 0) {
+            foreach ($data as $value) {
+                Motor::where('_id', $value['id'])->decrement('stok', $value['qty']);
+            }
+        } else {
+            Motor::where('_id', $data['id'])->decrement('stok', $data['qty']);
+        }
     }
 }
