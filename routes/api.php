@@ -51,5 +51,7 @@ Route::group(['prefix' => 'beta'], function () {
 
     // Sales Route
     Route::get('/sales', [SalesController::class, 'index']);
+    Route::get('/sales/kendaraan/{id}', [SalesController::class, 'showSalesKendaraan']);
+    Route::get('/sales/{id}', [SalesController::class, 'show']);
     Route::post('/sales', [SalesController::class, 'store']);
   });

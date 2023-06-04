@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\Motor;
 use App\Models\Mobil;
+use App\Models\Sales;
 
 class Kendaraan extends Model
 {
@@ -21,7 +22,11 @@ class Kendaraan extends Model
     }
 
     public function mobils () {
-        return $this->hasMany(Mobils::class);
+        return $this->hasMany(Mobil::class);
+    }
+
+    public function sales () {
+        return $this->hasMany(Sales::class);
     }
 
     public function getKendaraans () {
