@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Kendaraan;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\StockResource;
+use App\Http\Resources\KendaraanResource;
 
 class KendaraanController extends Controller
 {
@@ -48,7 +50,7 @@ class KendaraanController extends Controller
             'message' => ($data && count($data) > 0 ? 'Data found.' : 'No data available.'),
             'count_data' => $data ? count($data) : 0,
             'count_all' => $data ? count($data) : 0,
-            'data' => $data ?? null
+            'data' => $data ? KendaraanResource::collection($data) : null
         ], 200);
     }
 
@@ -204,6 +206,44 @@ class KendaraanController extends Controller
                         'message' => 'Kendaraan with given "id" '.$kendaraan.' not found.'
                     ], 404);
                 }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Kendaraan with given "id" '.$kendaraan.' not found.'
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please provide parameter "id".'
+            ], 400);
+        }
+    }
+
+    public function stockAll () {
+        $data = $this->kendaraanModel->getAllStock();
+
+        return response()->json([
+            'success' => true,
+            'message' => ($data && count($data) > 0 ? 'Data found.' : 'No data available.'),
+            'count_data' => $data ? count($data) : 0,
+            'count_all' => $data ? count($data) : 0,
+            'data' => $data ? StockResource::collection($data) : []
+            // 'data' => $data ?? null
+        ], 200);
+    }
+
+    public function stockKendaraan (String $kendaraan) {
+        if ($kendaraan) {
+            // Get Data
+            $data = $this->kendaraanModel->getStock($kendaraan);
+
+            if ($data) {
+                return response()->json([
+                    'success' => true,
+                    'message' => ($data && count($data) > 0 ? 'Data found.' : 'No data available.'),
+                    'data' => $data ? StockResource::make($data[0]) : []
+                ], 200);
             } else {
                 return response()->json([
                     'success' => false,

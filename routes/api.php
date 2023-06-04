@@ -31,6 +31,10 @@ Route::group(['prefix' => 'beta'], function () {
     Route::get('/kendaraan/{id}', [KendaraanController::class, 'show']);
     Route::delete('/kendaraan/{id}', [KendaraanController::class, 'destroy']);
 
+    // Stock Routes
+    Route::get('/stock/kendaraan/all', [KendaraanController::class, 'stockAll']);
+    Route::get('/stock/kendaraan/{id}', [KendaraanController::class, 'stockKendaraan']);
+
     // Motor Routes
     Route::get('/motor', [MotorController::class, 'motorIndex']);
     Route::post('/motor', [MotorController::class, 'motorStore']);
