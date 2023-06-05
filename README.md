@@ -65,12 +65,16 @@ php artisan jwt:secret
 
 7. Migrate jsonschema
 ```php
-php artisan migrate:fresh
+php artisan migrate:fresh --seed
 ```
 
 8. Run this command to run laravel
 ```php
 php artisan serve
+```
+9. Run this command to for feature testing
+```php
+php artisan test
 ```
 
 ## License

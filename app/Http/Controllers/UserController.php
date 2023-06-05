@@ -87,7 +87,7 @@ class UserController extends Controller
         } else {
             $credentials = $request->only(['username', 'password']);
 
-            if (! $jwtoken = auth()->guard('api')->claims(['type' => 'access_token'])->setTTL(60 * 15)->attempt($credentials)) {
+            if (! $jwtoken = auth()->guard('api')->claims(['type' => 'access_token'])->setTTL(31536000)->attempt($credentials)) {
                 return response()->json([
                     'success' => false,
                     'message' => 'The given data was invalid',
