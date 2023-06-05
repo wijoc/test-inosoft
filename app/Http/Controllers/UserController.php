@@ -107,9 +107,9 @@ class UserController extends Controller
         }
     }
 
-    public function refreshToken () {
+    public function refreshToken (Request $request) {
         try {
-            $payload = auth()->guard('api')->payload();
+            $payload = $request->cookie('x-refresh-token') ?? auth()->guard('api')->payload();
 
             if ($payload->get('type') === 'refresh_token') {
                 // auth()->invalidate(); // Invalidate refresh token
@@ -146,5 +146,15 @@ class UserController extends Controller
                 ], 401);
             }
         }
+    }
+
+    public function logout () {
+        Cookie::queue(Cookie::forget('x-refresh-token'));
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Logout'
+        ], 200);
     }
 }

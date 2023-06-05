@@ -36,10 +36,12 @@ git clone https://github.com/wijoc/test-inosoft.git
 2. Install laravel project tih this command:
 ```bash
 composer install
+```
 
 3. Create .env file
 ```bash
 cp .env.example .env
+```
 
 4. Configure .env file
 ```bash
@@ -49,22 +51,27 @@ DB_PORT=27017
 DB_DATABASE=[database-name]
 DB_USERNAME=[database-username]
 DB_PASSWORD=[database-password]
+```
 
 5. Generate app key
 ```php
 php artisan key:generate
+```
 
 6. Generate jwt key
 ```php
 php artisan jwt:secret
+```
 
 7. Migrate jsonschema
 ```php
 php artisan migrate:fresh
+```
 
 8. Run this command to run laravel
 ```php
 php artisan serve
+```
 
 ## License
 

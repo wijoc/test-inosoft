@@ -58,4 +58,5 @@ Route::group(['prefix' => 'beta'], function () {
     // User Routes
     Route::post('/registration', [UserController::class, 'store']);
     Route::post('/login', [UserController::class, 'login']);
+    Route::post('/logout', [UserController::class, 'logout']);
   });
