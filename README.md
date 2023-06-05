@@ -7,57 +7,64 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is repository for REST API to fulfill PT. Inosoft Trans Sistem Back-end test. Stack used:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Laravel 8](https://laravel.com).
+- [PHP 8](https://php.com).
+- [MongoDB](https://mongodb.com).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Before you install
 
-## Learning Laravel
+This project build on php 8.0, so make sure you run it on php version >= 8.0 (i would recommend to use 8.1).
+For mongoDB i would recommend running on newer version like version 6, and to be honest i don't know if this will run in version 4.x.
+This is my firsttime using laravel with mongodb so it's make this project is full of vulnerabilities, and queries that are not optimal. Feedback will be of great help.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Make sure this program is already installed in your environment:
+- [PHP v8](https://php.com).
+- [MongoDB](https://mongodb.com).
+- [Composer](https://getcomposer.org/).
+- Any text editor.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## How to install
 
-## Laravel Sponsors
+1. Download or clone this reposiroty using command:
+```bash
+git clone https://github.com/wijoc/test-inosoft.git
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. Install laravel project tih this command:
+```bash
+composer install
 
-### Premium Partners
+3. Create .env file
+```bash
+cp .env.example .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+4. Configure .env file
+```bash
+DB_CONNECTION=mongodb
+DB_HOST=127.0.0.1
+DB_PORT=27017
+DB_DATABASE=[database-name]
+DB_USERNAME=[database-username]
+DB_PASSWORD=[database-password]
 
-## Contributing
+5. Generate app key
+```php
+php artisan key:generate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Generate jwt key
+```php
+php artisan jwt:secret
 
-## Code of Conduct
+7. Migrate jsonschema
+```php
+php artisan migrate:fresh
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. Run this command to run laravel
+```php
+php artisan serve
 
 ## License
 
