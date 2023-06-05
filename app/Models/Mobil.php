@@ -78,4 +78,8 @@ class Mobil extends Model
             Mobil::where('_id', $data['id'])->decrement('stok', $data['qty']);
         }
     }
+
+    public function checkStock (String $id, Int $qty) {
+        return Motor::where('_id', $id)->where('stok', '>=', $qty)->get();
+    }
 }

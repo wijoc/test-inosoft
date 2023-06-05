@@ -130,6 +130,17 @@ class SalesController extends Controller
                 ];
 
                 if ($value['type'] === 'motor') {
+                    $checkStokMotor = $this->motorModel->checkStock($value['motor_id'], intval($value['qty']));
+                    if ($checkStokMotor->isEmpty()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'The given data was invalid',
+                            'errors' => [
+                                'sale_trans_detail' => ['Stok motor dengan id '.$value['motor_id'].' tidak mencukupi.']
+                            ]
+                        ], 400);
+                    }
+
                     $detail['motor_id'] = $value['motor_id'];
 
                     // push to $motors for update stock
@@ -137,6 +148,17 @@ class SalesController extends Controller
                 }
 
                 if ($value['type'] === 'mobil') {
+                    $checkStokMobil = $this->mobilModel->checkStock($value['mobil_id'], intval($value['qty']));
+                    if ($checkStokMobil->isEmpty()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'The given data was invalid',
+                            'errors' => [
+                                'sale_trans_detail' => ['Stok motor dengan id '.$value['motor_id'].' tidak mencukupi.']
+                            ]
+                        ], 400);
+                    }
+
                     $detail['mobil_id'] = $value['mobil_id'];
 
                     // push to $mobils for update stock
