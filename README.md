@@ -20,6 +20,7 @@ This is repository for REST API to fulfill PT. Inosoft Trans Sistem Back-end tes
 This project build on php 8.0, so make sure you run it on php version >= 8.0 (i would recommend to use 8.1).
 For mongoDB i would recommend running on newer version like version 6, and to be honest i don't know if this will run in version 4.x.
 This is my firsttime using laravel with mongodb so it's make this project is full of vulnerabilities, and queries that are not optimal. Feedback will be of great help.
+i'm adding postman collection to test by postman.
 
 Make sure this program is already installed in your environment:
 - [PHP v8](https://php.com).

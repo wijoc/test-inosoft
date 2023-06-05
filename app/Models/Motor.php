@@ -71,17 +71,31 @@ class Motor extends Model
         return Motor::where('_id', $id)->delete();
     }
 
-    public function decreseStock (Int $multiple = 0, Array $data) {
+    public function decreaseStock (Int $multiple = 0, Array $data) {
         if ($multiple > 0) {
             foreach ($data as $value) {
-                Motor::where('_id', $value['id'])->decrement('stok', $value['qty']);
+                return Motor::where('_id', $value['id'])->decrement('stok', $value['qty']);
             }
         } else {
-            Motor::where('_id', $data['id'])->decrement('stok', $data['qty']);
+            return Motor::where('_id', $data['id'])->decrement('stok', $data['qty']);
+        }
+    }
+
+    public function increaseStock (Int $multiple = 0, Array $data) {
+        if ($multiple > 0) {
+            foreach ($data as $value) {
+                return Motor::where('_id', $value['id'])->increment('stok', $value['qty']);
+            }
+        } else {
+            return Motor::where('_id', $data['id'])->increment('stok', $data['qty']);
         }
     }
 
     public function checkStock (String $id, Int $qty) {
         return Motor::where('_id', $id)->where('stok', '>=', $qty)->get();
+    }
+
+    public function checkKendaraanId (String $motor, String $kendaraan) {
+        return Motor::where('_id', $motor)->where('kendaraan_id', $kendaraan)->get();
     }
 }

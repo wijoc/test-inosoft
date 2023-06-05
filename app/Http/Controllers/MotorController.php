@@ -206,4 +206,39 @@ class MotorController extends KendaraanController
             ], 400);
         }
     }
+
+    public function motorAddStock (Request $request) {
+        $validator = Validator::make($request->all(), [
+                'id' => 'required|exists:App\Models\Motor,_id',
+                'add_qty' => 'required|numeric|gte:0'
+            ], [
+                'id.required' => 'ID is required.',
+                'id.exists' => 'motor with given id not found.',
+                'add_qty.required' => 'add_qty is required.',
+                'add_qty.numeric' => 'add_qty value must be numeric.',
+                'add_qty.gte' => 'add_qty value must be numeric and greater than or equal to 0.'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'The given data was invalid',
+                'errors' => $validator->errors()
+            ], 400);
+        } else {
+            $increaseStock = $this->motorModel->increaseStock(0, ['id' => $validator->validated()['id'], 'qty' => intval($validator->validated()['add_qty'])]);
+
+            if ($increaseStock) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Success adding stock.'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to add stock.'
+                ], 500);
+            }
+        }
+    }
 }

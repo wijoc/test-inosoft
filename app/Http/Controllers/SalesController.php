@@ -141,6 +141,17 @@ class SalesController extends Controller
                         ], 400);
                     }
 
+                    $checkKendaraanId = $this->motorModel->checkKendaraanId($value['motor_id'], $validator->validated()['id_kendaraan']);
+                    if ($checkKendaraanId->isEmpty()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'The given data was invalid',
+                            'errors' => [
+                                'sale_trans_detail' => ['Motor dengan id '.$value['motor_id'].' tidak ditemukan, pastikan kendaraan dengan id : '.$validator->validated()['id_kendaraan'].' memiliki id motor yang sesuai.']
+                            ]
+                        ], 400);
+                    }
+
                     $detail['motor_id'] = $value['motor_id'];
 
                     // push to $motors for update stock
@@ -154,7 +165,7 @@ class SalesController extends Controller
                             'success' => false,
                             'message' => 'The given data was invalid',
                             'errors' => [
-                                'sale_trans_detail' => ['Stok motor dengan id '.$value['motor_id'].' tidak mencukupi.']
+                                'sale_trans_detail' => ['Stok mobil dengan id '.$value['mobil_id'].' tidak mencukupi.']
                             ]
                         ], 400);
                     }
@@ -177,11 +188,11 @@ class SalesController extends Controller
             $input = $this->salesModel->insertSales($inputData);
             if ($input) {
                 if ($motors && count($motors) > 0) {
-                    $this->motorModel->decreseStock(1, $motors);
+                    $this->motorModel->decreaseStock(1, $motors);
                 }
 
                 if ($mobils && count($mobils) > 0) {
-                    $this->mobilModel->decreseStock(1, $mobils);
+                    $this->mobilModel->decreaseStock(1, $mobils);
                 }
 
                 return response()->json([

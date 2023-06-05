@@ -1,0 +1,878 @@
+{
+	"info": {
+		"_postman_id": "232d30fd-5d52-4457-8a11-025aadd1d40c",
+		"name": "Inosoft Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19159304"
+	},
+	"item": [
+		{
+			"name": "GET Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/kendaraan",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"kendaraan"
+					]
+				},
+				"description": "Endpoint for get all kendaraan\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Stock All Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/stock/kendaraan/all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"stock",
+						"kendaraan",
+						"all"
+					]
+				},
+				"description": "Endpoint for get stock all kendaraan"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW Stock All Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/stock/kendaraan/647cbb5b3edc1f7338074f1c",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"stock",
+						"kendaraan",
+						"647cbb5b3edc1f7338074f1c"
+					]
+				},
+				"description": "Endpoint for get stock all kendaraan"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Kendaraan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "release_year",
+							"value": "2001",
+							"type": "text"
+						},
+						{
+							"key": "colour",
+							"value": "Red",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "10000.99",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/kendaraan",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"kendaraan"
+					]
+				},
+				"description": "Endpoint for add new kendaraan data using POST Method.\n\nRequest Body:\n\n- release_year: required, numeric, greater than 0, max length 4 digit. Value is indicator when 'kendaraan' is release.\n- colour: required.\n- price: required, numeric | decimal, between 0 an 9,999,999,999,999.99"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/kendaraan/{{id_kendaraan}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"kendaraan",
+						"{{id_kendaraan}}"
+					]
+				},
+				"description": "Endpoint to get kendaraan data by id.\n\nPath parameter:\n- id : required"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Kendaraan",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "release_year",
+							"value": "2013",
+							"type": "text"
+						},
+						{
+							"key": "colour",
+							"value": "Red",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "10000.99",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/kendaraan/{{id_kendaraan}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"kendaraan",
+						"{{id_kendaraan}}"
+					]
+				},
+				"description": "Endpoint to update kendaraan data, by given id.\n\nPath Parameter:\n- id: required\n\nRequest Body: "
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Kendaraan",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/kendaraan/{{id_kendaraan}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"kendaraan",
+						"{{id_kendaraan}}"
+					]
+				},
+				"description": "Endpoint to delete kendaraan.\n\nPath parameter:\n- id : required"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Motor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor"
+					]
+				},
+				"description": "Endpoint to get all motor data\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Motor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "engine",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "suspension",
+							"value": "USD",
+							"type": "text"
+						},
+						{
+							"key": "transmission",
+							"value": "manual",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "id_kendaraan",
+							"value": "647c91533edc1f7338074f13",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor"
+					]
+				},
+				"description": "Endpoint to add new motor data.\n\nRequest Body:\n\n- engine: required, numeric, must be greater than 0\n- suspension: required, value must be one of : 'Telescopic' or 'USD'\n- transmission: required, value must be one of 'automatic', 'semi-manual', or 'manual'\n- stock: required, numeric, greater than or equal to 0.\n- kendaraan_id: required, id must be exist"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW Motor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor/647afe27c7b0fdd5c503d1b7",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor",
+						"647afe27c7b0fdd5c503d1b7"
+					]
+				},
+				"description": "Endpoint to get spesific motor data by id\n\nPath parameter: \n- id : required"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Motor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "engine",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "suspension",
+							"value": "telescopic",
+							"type": "text"
+						},
+						{
+							"key": "transmission",
+							"value": "semi-manual",
+							"type": "text"
+						},
+						{
+							"key": "id_kendaraan",
+							"value": "647afa71c7b0fdd5c503d1b2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor/647afac5c7b0fdd5c503d1b6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor",
+						"647afac5c7b0fdd5c503d1b6"
+					]
+				},
+				"description": "Endpoint to update motor data.\n\nPath parameter:  \n\\-id: required\n\nRequest Body:\n\n- engine: required, numeric, must be greater than 0\n- suspension: required, value must be one of : 'Telescopic' or 'USD'\n- transmission: required, value must be one of 'automatic', 'semi-manual', or 'manual'\n- kendaraan_id: required, id must be exist"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Motor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor/647afac5c7b0fdd5c503d1b6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor",
+						"647afac5c7b0fdd5c503d1b6"
+					]
+				},
+				"description": "Endpoint to delete motor by id.\n\nPath Parameter:\n- id: required"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Mobil",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Mobil",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "engine",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "passenger_capacity",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "SUV",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "id_kendaraan",
+							"value": "647c91533edc1f7338074f13",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil"
+					]
+				},
+				"description": "Endpoint for add new mobil data.\n\nRequest Body:\n\n- engine: required, numeric, greater than or equal to 1.\n- passenger_capacity: required, numeric, greater than or equal to 1.\n- type: required\n- stock: required, numeric, greater than or equal to 0.\n- id_kendaraan: required"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Mobil",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "engine",
+							"value": "8000",
+							"type": "text"
+						},
+						{
+							"key": "passenger_capacity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "super sport",
+							"type": "text"
+						},
+						{
+							"key": "id_kendaraan",
+							"value": "{{id_kendaraan_mobil}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil/{{id_mobil}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil",
+						"{{id_mobil}}"
+					]
+				},
+				"description": "Endpoint for add new mobil data.\n\nRequest Body:\n\n- engine: required, numeric, greater than or equal to 1.\n- passenger_capacity: required, numeric, greater than or equal to 1.\n- type: required\n- id_kendaraan: required"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW Mobil",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil/{{id_mobil}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil",
+						"{{id_mobil}}"
+					]
+				},
+				"description": "Endpoint for get spesific mobil data by id.\n\nPath Parameter:\n\n- id: required"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Mobil",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "engine",
+							"value": "8000",
+							"type": "text"
+						},
+						{
+							"key": "passenger_capacity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "super sport",
+							"type": "text"
+						},
+						{
+							"key": "id_kendaraan",
+							"value": "{{id_kendaraan_mobil}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil/{{id_mobil}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil",
+						"{{id_mobil}}"
+					]
+				},
+				"description": "Endpoint for delete mobil data by id.\n\nPath Parameter:\n\n- id: required"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Sales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/sales",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"sales"
+					]
+				},
+				"description": "Endpoint to get sales data in date range.\n\nQuery parameter:\n- start_date: date. if empty or not present value will set to 30 Days Ago\n- end_date: date. if empty or not present value will set to todays date"
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW Sales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/sales/647ce9e4283e8e7e8a037772",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"sales",
+						"647ce9e4283e8e7e8a037772"
+					]
+				},
+				"description": "Endpoint to get spesific sales data by sales id.\n\nPath parameter:\n\n- id: required"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Sales",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sale_trans_date\": \"2023-06-03T23:34:30+00:00\",\n    \"id_kendaraan\": \"647d3c7c544c0ae78e08e50c\",\n    \"sale_trans_detail\": [\n        {\n            \"type\": \"motor\",\n            \"qty\": 3,\n            \"motor_id\": \"647d484326ed6f603904af82\",\n            \"mobil_id\": \"647b26d89faeab3d540c93d3\"\n        },\n        {\n            \"type\": \"mobil\",\n            \"qty\": 1,\n            \"motor_id\": \"647afe27c7b0fdd5c503d1b7\",\n            \"mobil_id\": \"647d487026ed6f603904af83\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/sales",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"sales"
+					]
+				},
+				"description": "Endpoint to get sales data in date range.\n\nQuery parameter:\n- start_date: date. if empty or not present value will set to 30 Days Ago\n- end_date: date. if empty or not present value will set to todays date"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Sales by Kendaraan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/sales/kendaraan/647cbb4f3edc1f7338074f1b",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"sales",
+						"kendaraan",
+						"647cbb4f3edc1f7338074f1b"
+					]
+				},
+				"description": "Endpoint to get sales data in spesific kendaraan id.\n\nQuery parameter:\n\n- kendaraan_id: required"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Regristration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1password",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "test1password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/registration",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test1password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Increase Stock Motor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "647d484326ed6f603904af82",
+							"type": "text"
+						},
+						{
+							"key": "add_qty",
+							"value": "50",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/motor/add-stock",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"motor",
+						"add-stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Increase Stock Mobil",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "647d487026ed6f603904af83",
+							"type": "text"
+						},
+						{
+							"key": "add_qty",
+							"value": "50",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/mobil/add-stock",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"mobil",
+						"add-stock"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2JldGEvbG9naW4iLCJpYXQiOjE2ODU5MjkwOTcsImV4cCI6MzU3ODA4OTA5NywibmJmIjoxNjg1OTI5MDk3LCJqdGkiOiJhcW1BTFhJM0dVdFF5Ulk5Iiwic3ViIjoiNjQ3ZDNjN2M1NDRjMGFlNzhlMDhlNTBhIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInR5cGUiOiJhY2Nlc3NfdG9rZW4ifQ.oeKQRYu-NG9TkJE_XALzm6deZw7Qm6714Wtjrpsf5Kk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "prefix",
+			"value": "beta",
+			"type": "string"
+		},
+		{
+			"key": "id_kendaraan",
+			"value": "647ab5e28b39a4425006e592",
+			"type": "string"
+		},
+		{
+			"key": "id_kendaraan_mobil",
+			"value": "647afa9bc7b0fdd5c503d1b5",
+			"type": "string"
+		},
+		{
+			"key": "id_motor",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_mobil",
+			"value": "647b26d89faeab3d540c93d3",
+			"type": "string"
+		}
+	]
+}

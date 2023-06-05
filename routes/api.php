@@ -34,6 +34,8 @@ Route::group(['prefix' => 'beta'], function () {
     // Stock Routes
     Route::get('/stock/kendaraan/all', [KendaraanController::class, 'stockAll'])->middleware('jauth');
     Route::get('/stock/kendaraan/{id}', [KendaraanController::class, 'stockKendaraan'])->middleware('jauth');
+    Route::post('/motor/add-stock', [MotorController::class, 'motorAddStock'])->middleware('jauth');
+    Route::post('/mobil/add-stock', [MobilController::class, 'mobilAddStock'])->middleware('jauth');
 
     // Motor Routes
     Route::get('/motor', [MotorController::class, 'motorIndex'])->middleware('jauth');
